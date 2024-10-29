@@ -4,7 +4,7 @@ export default function Footer() {
     <footer className="bg-white border-t border-gray-200 mt-10">
       <div className="max-w-6xl mx-auto px-4 py-4 text-center">
         <p className="text-gray-600">
-          © {new Date().getFullYear()} URL Shortener. All rights reserved.
+          © {new Date().getFullYear()} GShort. All rights reserved.
         </p>
       </div>
     </footer>
