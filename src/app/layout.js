@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "URL Shortener",
+  title: "GShort",
   description: "Shorten your URLs effortlessly.",
 };
 
