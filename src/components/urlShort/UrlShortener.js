@@ -13,6 +13,7 @@ export default function UrlShortener() {
   const [loading, setLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertType, setAlertType] = useState("");
+    const apiEnd = "https://urlshortnerbackend-1rsb.onrender.com";
 
   const isValidUrl = (string) => {
     const res = string.match(/(http|https):\/\/[^\s/$.?#].[^\s]*/);
@@ -35,10 +36,10 @@ export default function UrlShortener() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/shorten",
+        `${apiEnd}/api/v1/shorten`,
         { originalUrl: url }
       );
-      const shortCode = `http://localhost:3000/${response.data.shortUrl}`;
+      const shortCode = `https://gshort.vercel.app/${response.data.shortUrl}`;
       setShortenedUrl(shortCode);
       setAlertMessage("URL shortened successfully!");
       setAlertType("success");

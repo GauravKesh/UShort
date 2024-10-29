@@ -10,12 +10,13 @@ export default function RedirectPage({ params }) {
   const shortCode = slug?.[0];
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const apiEnd = "https://urlshortnerbackend-1rsb.onrender.com";
 
   useEffect(() => {
     const fetchOriginalUrl = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/api/v1/${shortCode}`
+          `${apiEnd}/api/v1/${shortCode}`
         );
         if (!response.ok) throw new Error("URL not found");
 
