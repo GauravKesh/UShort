@@ -44,6 +44,7 @@ export default function UrlShortener() {
       setShortenedUrl(shortCode);
       setAlertMessage("URL shortened successfully!");
       setAlertType("success");
+      setUrl("")
     } catch (err) {
       setError("Failed to shorten the URL. Please try again.");
       setAlertMessage("Failed to shorten the URL.");

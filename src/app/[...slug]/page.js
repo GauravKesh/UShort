@@ -36,7 +36,6 @@ export default function RedirectPage({ params }) {
   return (
     <div className="relative flex items-center justify-center h-screen bg-gray-100">
       {loading && !error ? (
-        // Modal overlay with blur effect
         <div className="fixed inset-0 bg-gray-100 bg-opacity-80 backdrop-blur-lg flex items-center justify-center z-50">
           <div className="bg-white p-8 rounded-lg shadow-lg">
             <Redirect />
@@ -49,8 +48,7 @@ export default function RedirectPage({ params }) {
               errorMessage={error}
               clearMessage={"Please check the URL or try again later."}
             />
-            {/*  <p className="text-lg font-semibold mb-2">{error}</p>
-          <p>Please check the URL or try again later.</p> */}
+ 
           </div>
         </div>
       ) : null}
