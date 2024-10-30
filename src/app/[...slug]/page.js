@@ -27,7 +27,6 @@ export default function RedirectPage({ params }) {
         // setLoading(false);
       }
     };
-
     if (shortCode) {
       fetchOriginalUrl();
     }
@@ -48,7 +47,6 @@ export default function RedirectPage({ params }) {
               errorMessage={error}
               clearMessage={"Please check the URL or try again later."}
             />
- 
           </div>
         </div>
       ) : null}
