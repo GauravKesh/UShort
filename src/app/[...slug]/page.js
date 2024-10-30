@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Redirect from "@/components/utils/Redirect";
+import RedirectError from "@/components/utils/RedirectError";
 
 export default function RedirectPage({ params }) {
   const router = useRouter();
@@ -42,9 +43,15 @@ export default function RedirectPage({ params }) {
           </div>
         </div>
       ) : error ? (
-        <div className="text-center text-black">
-          <p className="text-lg font-semibold mb-2">{error}</p>
-          <p>Please check the URL or try again later.</p>
+        <div className="fixed inset-0 bg-gray-100 bg-opacity-80 backdrop-blur-lg flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <RedirectError
+              errorMessage={error}
+              clearMessage={"Please check the URL or try again later."}
+            />
+            {/*  <p className="text-lg font-semibold mb-2">{error}</p>
+          <p>Please check the URL or try again later.</p> */}
+          </div>
         </div>
       ) : null}
     </div>

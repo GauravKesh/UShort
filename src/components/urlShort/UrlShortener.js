@@ -5,6 +5,7 @@ import { ClipboardIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import Alert from "../utils/Alert";
 import Benefits from "./Benefits"; // Import the Benefits component
+import Zoomies from "../utils/loaders/Zoomies";
 
 export default function UrlShortener() {
   const [url, setUrl] = useState("");
@@ -65,14 +66,14 @@ export default function UrlShortener() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100">
+    <div className="flex flex-col items-center  bg-gray-100">
       <div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full">
-        <h1 className="text-3xl font-semibold text-center mb-4">
+        {/*   <h1 className="text-3xl font-semibold text-center mb-4">
           URL Shortener
         </h1>
         <p className="text-center text-gray-600 mb-6">
           Shorten your links quickly and easily!
-        </p>
+        </p> */}
         <input
           type="text"
           placeholder="Enter your URL"
@@ -86,7 +87,7 @@ export default function UrlShortener() {
           disabled={loading}
         >
           {loading ? (
-            <span className="loader animate-spin h-5 w-5 border-4 border-white border-t-transparent rounded-full"></span>
+            <span><Zoomies/></span>
           ) : (
             "Shorten URL"
           )}

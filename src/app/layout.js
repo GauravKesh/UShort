@@ -38,7 +38,7 @@ function MainLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main className="flex-grow max-w-6xl mx-auto p-4">{children}</main>
+      <main className="flex-grow max-w-6xl mx-auto ">{children}</main>
       <Footer />
     </>
   );
