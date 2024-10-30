@@ -5,7 +5,7 @@ import { ClipboardIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import Alert from "../utils/Alert";
 import Benefits from "./Benefits"; // Import the Benefits component
-import Zoomies from "../utils/loaders/Zoomies";
+import TailChase from "../utils/loaders/TailChase";
 
 export default function UrlShortener() {
   const [url, setUrl] = useState("");
@@ -14,7 +14,7 @@ export default function UrlShortener() {
   const [loading, setLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertType, setAlertType] = useState("");
-    const apiEnd = "https://urlshortnerbackend-1rsb.onrender.com";
+  const apiEnd = "https://urlshortnerbackend-1rsb.onrender.com";
 
   const isValidUrl = (string) => {
     const res = string.match(/(http|https):\/\/[^\s/$.?#].[^\s]*/);
@@ -36,15 +36,14 @@ export default function UrlShortener() {
     setError("");
 
     try {
-      const response = await axios.post(
-        `${apiEnd}/api/v1/shorten`,
-        { originalUrl: url }
-      );
+      const response = await axios.post(`${apiEnd}/api/v1/shorten`, {
+        originalUrl: url,
+      });
       const shortCode = `https://gshort.vercel.app/${response.data.shortUrl}`;
       setShortenedUrl(shortCode);
       setAlertMessage("URL shortened successfully!");
       setAlertType("success");
-      setUrl("")
+      setUrl("");
     } catch (err) {
       setError("Failed to shorten the URL. Please try again.");
       setAlertMessage("Failed to shorten the URL.");
@@ -69,12 +68,6 @@ export default function UrlShortener() {
   return (
     <div className="flex flex-col items-center  bg-gray-100">
       <div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full">
-        {/*   <h1 className="text-3xl font-semibold text-center mb-4">
-          URL Shortener
-        </h1>
-        <p className="text-center text-gray-600 mb-6">
-          Shorten your links quickly and easily!
-        </p> */}
         <input
           type="text"
           placeholder="Enter your URL"
@@ -88,7 +81,9 @@ export default function UrlShortener() {
           disabled={loading}
         >
           {loading ? (
-            <span><Zoomies/></span>
+            <span>
+              <TailChase />
+            </span>
           ) : (
             "Shorten URL"
           )}
@@ -112,8 +107,7 @@ export default function UrlShortener() {
             </button>
           </div>
         )}
-        {/* Benefits Section */}
-        <Benefits /> {/* Include the Benefits component */}
+        <Benefits />
         {(error || alertMessage) && (
           <Alert
             message={error || alertMessage}

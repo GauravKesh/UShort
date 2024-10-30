@@ -1,3 +1,4 @@
+"use client";
 import Quantum from "./loaders/Quantum";
 
 export default function Redirect() {

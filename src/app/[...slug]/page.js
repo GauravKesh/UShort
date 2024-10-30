@@ -1,5 +1,4 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Redirect from "@/components/utils/Redirect";
@@ -12,21 +11,19 @@ export default function RedirectPage({ params }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const apiEnd = "https://urlshortnerbackend-1rsb.onrender.com";
-
   useEffect(() => {
     const fetchOriginalUrl = async () => {
       try {
         const response = await fetch(`${apiEnd}/api/v1/${shortCode}`);
         if (!response.ok) throw new Error("URL not found");
         const data = await response.json();
-        window.location.replace(data.originalUrl);
+        router.push(data.originalUrl);
       } catch (err) {
         console.error("Error fetching URL:", err);
         setError("URL not found or server error.");
-      } finally {
-        // setLoading(false);
       }
     };
+
     if (shortCode) {
       fetchOriginalUrl();
     }
