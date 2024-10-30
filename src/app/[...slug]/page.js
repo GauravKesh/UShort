@@ -1,14 +1,15 @@
-// src/app/[...slug]/page.js
-"use client"; // Marks the file as a Client Component
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Redirect from "@/components/utils/Redirect";
 
 export default function RedirectPage({ params }) {
   const router = useRouter();
   const { slug } = params;
   const shortCode = slug?.[0];
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
   const apiEnd = "https://urlshortnerbackend-1rsb.onrender.com";
 
   useEffect(() => {
@@ -16,13 +17,13 @@ export default function RedirectPage({ params }) {
       try {
         const response = await fetch(`${apiEnd}/api/v1/${shortCode}`);
         if (!response.ok) throw new Error("URL not found");
-
         const data = await response.json();
-        // Redirect directly without displaying a loading state
         window.location.replace(data.originalUrl);
       } catch (err) {
         console.error("Error fetching URL:", err);
         setError("URL not found or server error.");
+      } finally {
+        // setLoading(false);
       }
     };
 
@@ -31,12 +32,21 @@ export default function RedirectPage({ params }) {
     }
   }, [shortCode]);
 
-  return error ? (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <div className="text-center text-red-600">
-        <p className="text-lg font-semibold mb-2">{error}</p>
-        <p>Please check the URL or try again later.</p>
-      </div>
+  return (
+    <div className="relative flex items-center justify-center h-screen bg-gray-100">
+      {loading && !error ? (
+        // Modal overlay with blur effect
+        <div className="fixed inset-0 bg-gray-100 bg-opacity-80 backdrop-blur-lg flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <Redirect />
+          </div>
+        </div>
+      ) : error ? (
+        <div className="text-center text-black">
+          <p className="text-lg font-semibold mb-2">{error}</p>
+          <p>Please check the URL or try again later.</p>
+        </div>
+      ) : null}
     </div>
-  ) : null;
+  );
 }
