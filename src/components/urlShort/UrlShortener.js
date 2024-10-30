@@ -66,8 +66,8 @@ export default function UrlShortener() {
   };
 
   return (
-    <div className="flex flex-col items-center  bg-gray-100">
-      <div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full">
+    <div className="flex flex-col items-center bg-gray-100  p-4">
+      <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
         <input
           type="text"
           placeholder="Enter your URL"
@@ -109,11 +109,13 @@ export default function UrlShortener() {
         )}
         <Benefits />
         {(error || alertMessage) && (
-          <Alert
-            message={error || alertMessage}
-            type={error ? "error" : alertType}
-            onClose={closeAlert}
-          />
+          <div className="">
+            <Alert
+              message={error || alertMessage}
+              type={error ? "error" : alertType}
+              onClose={closeAlert}
+            />
+          </div>
         )}
       </div>
     </div>

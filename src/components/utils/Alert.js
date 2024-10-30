@@ -35,7 +35,7 @@ export default function Alert({ message, type, onClose }) {
 
   return (
     <div
-      className={`fixed bottom-4 right-4 z-50 p-4 rounded shadow-lg transition-opacity duration-300 ${
+      className={`fixed bottom-4 right-4 z-40 p-4 rounded shadow-lg transition-opacity duration-300 ${
         isVisible ? "opacity-100" : "opacity-0"
       } ${alertStyles[type]} flex items-center`}
     >
